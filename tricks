@@ -1,0 +1,6 @@
+1. check if a given number is of 2^n , where n>=1
+    
+       solution :  return (n & (n-1) == 0)? 1 :0 ; 
+        [ ex: take n as 8 -> 1000(in binary) ,n-1=0111 (n & n-1 will give 0 if its divisible) 
+
+2.
