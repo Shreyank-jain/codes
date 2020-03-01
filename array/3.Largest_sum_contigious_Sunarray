@@ -1,0 +1,28 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int tc,*arr,n;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        arr=new int[n];
+        for(int i=0;i<n;i++) cin>>arr[i];
+        int max_so_far=arr[0],cur_max=arr[0];
+        
+        for(int i=1;i<n;i++)
+        {
+            cur_max=max(arr[i],cur_max+arr[i]);
+            max_so_far=max(cur_max,max_so_far);
+        }
+        cout<<max_so_far<<"\n";
+          
+    }
+
+	return 0;
+}
