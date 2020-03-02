@@ -1,0 +1,36 @@
+Given a sorted array of positive integers. Your task is to rearrange  the array elements alternatively
+i.e first element should be max value, second should be min value, third should be second max,
+fourth should be second min and so on...
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int tc,n;
+	cin>>tc;
+	int *arr;
+	while(tc--)
+	{
+	    cin>>n;
+	    arr=new int[n];
+	    for(int i=0;i<n;i++) cin>>arr[i];
+	    int i=0,last=arr[n-1];
+	    for(int i=0;i<n;i=i+2)
+	    {
+	        for(int j=n-2;j>=i;j--)
+	        {
+	            arr[j+1]=arr[j] ;
+	        }
+	        arr[i]=last;
+	        last=arr[n-1];
+	    }
+	    for(int i=0;i<n;i++) cout<<arr[i]<<" ";
+	    cout<<"\n";
+	}
+	return 0;
+}
+
+-----method 2--------
+
+
