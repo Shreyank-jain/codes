@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
 
-void nofz(int arr[],int n)
-{
-    
-}
 int main() {
 	int tc,n;
     ios_base::sync_with_stdio(false);
