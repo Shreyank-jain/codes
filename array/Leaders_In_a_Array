@@ -1,0 +1,51 @@
+Example:
+Input:
+3
+6
+16 17 4 3 5 2
+5
+1 2 3 4 0
+5
+7 4 5 7 3
+Output:
+17 5 2
+4 0
+7 7 3
+
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+   ios_base::sync_with_stdio(false);
+   cin.tie(NULL);
+   int tc,n,*arr,max;
+   cin>>tc;
+
+   while(tc--)
+   {
+       cin>>n;
+       arr=new int[n];
+       for(int i=0;i<n;i++) cin>>arr[i];
+       
+       max=n-1;
+       vector<int> v;
+       for(int i=n-2;i>=0;i--)
+       {
+            if(arr[i]>=arr[max])
+            {
+               v.push_back(arr[max]);
+               max=i;
+            }
+       }
+
+
+           v.push_back(arr[max]);
+       for (auto it = v.rbegin(); it != v.rend(); it++) 
+        cout << *it << " "; 
+       cout<<"\n";
+    
+   }
+       
+	return 0;
+}
