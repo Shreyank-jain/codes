@@ -1,0 +1,67 @@
+Example:
+Input:
+2
+6 
+0900  0940 0950  1100 1500 1800
+0910 1200 1120 1130 1900 2000
+3
+0900 1100 1235
+1000 1200 1240 
+
+Output:
+3
+1
+
+
+#include<algorithm> 
+using namespace std; 
+
+int findPlatform(int arr[], int dep[], int n) 
+{ 
+sort(arr, arr+n); 
+sort(dep, dep+n); 
+
+int plat_needed = 1, result = 1; 
+int i = 1, j = 0; 
+
+
+while (i < n && j < n) 
+{ 
+
+	if (arr[i] <= dep[j]) 
+	{ 
+		plat_needed++; 
+		i++; 
+
+		if (plat_needed > result) 
+			result = plat_needed; 
+	} 
+	else
+	{ 
+		plat_needed--; 
+		j++; 
+	} 
+} 
+
+     return result; 
+} 
+
+int main() 
+{ 
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	int tc,n;
+	int *ar,*dp ;
+	cin>>tc;
+	while(tc--)
+	{
+	    cin>>n;
+	    ar=new int[n];
+	    dp=new int[n];
+	    for(int i=0;i<n;i++) {cin>>ar[i]  ;}
+	    
+	    for(int i=0;i<n;i++) {cin>>dp[i] ;}	
+	    cout<<findPlatform(ar, dp, n)<<"\n"; 
+	}
+	return 0; 
+} 
