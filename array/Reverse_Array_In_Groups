@@ -1,0 +1,42 @@
+Example:
+Input
+2
+5 3
+1 2 3 4 5
+6 2
+10 20 30 40 50 60
+
+Output
+3 2 1 5 4
+20 10 40 30 60 50
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	int tc,n,k;
+	
+	cin>>tc;
+	while(tc--)
+	{
+	    cin>>n>>k;
+	    vector<int> v ;
+	    int x=0,y=k,z;
+	    for(int i=0;i<n;i++) {cin>>z; v.push_back(z)  ;}
+	    for(int i=0;i<n/k ;i++)
+	    {
+	        
+	        reverse(v.begin()+x,v.begin()+y);
+	        x+=k; y+=k; 
+	    }
+	    if(x%k==0) 
+	    { reverse(v.begin()+x,v.begin()+n); }
+	    
+	   for(int i=0;i<n;i++)
+	      cout<<v[i]<<" ";
+	   cout<<"\n";
+	}
+	return 0;
+}
