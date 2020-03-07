@@ -1,0 +1,56 @@
+Example:
+Input:
+2
+7
+4 3 7 8 6 2 1
+4
+1 4 3 2
+Output:
+3 7 4 8 2 6 1
+1 4 2 3
+
+
+#include <iostream> 
+using namespace std; 
+
+void zigZag(int arr[], int n) 
+{ 
+
+	bool flag = true; 
+
+	for (int i=0; i<=n-2; i++) 
+	{ 
+		if (flag)
+		{ 
+
+			if (arr[i] > arr[i+1]) 
+				swap(arr[i], arr[i+1]); 
+		} 
+		else 
+		{ 
+
+			if (arr[i] < arr[i+1]) 
+				swap(arr[i], arr[i+1]); 
+		} 
+		flag = !flag; 
+	} 
+	   for (int i=0; i<n; i++) 
+	    	cout<<arr[i]<<" ";
+	   cout<<"\n";
+} 
+
+int main() 
+{ 
+	int tc,n;
+	cin>>tc;
+	int *arr;
+	while(tc--)
+	{  
+	    cin>>n;
+	    
+	   for (int i=0; i<n; i++) 
+	    	cin>>arr[i]; 
+	   zigZag(arr, n); 
+	}
+	return 0; 
+} 
