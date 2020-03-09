@@ -11,16 +11,17 @@ Output:
 
 #include <bits/stdc++.h>
 using namespace std;
+
 int main() {
-    int tc;
-    cin>>tc;
-    while(tc--){
-        string s1,s2,s3;
+    int t;
+    cin>>t;
+    while(t--){
+        string s1,s2,sr,sl;
         cin>>s1;
         cin>>s2;
-        s3=s2+s2;
+        sr=s2+s2;
         sl=s1+s1;
-        if(s3.find(s1)==2 ||sl.find(s2)==2){
+        if(sr.find(s1)==2 ||sl.find(s2)==2){
             cout<<"1"<<endl;
         }
     else    
@@ -28,4 +29,3 @@ int main() {
     }
 	return 0;
 }
-
