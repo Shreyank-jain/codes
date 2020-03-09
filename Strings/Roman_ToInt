@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int roman_to_int(string roman)
+{
+    map<char,int> R;
+    R['I']=1;
+    R['V']=5;
+    R['X']=10;
+    R['L']=50;
+    R['C']=100;
+    R['D']=500;
+    R['M']=1000;
+    
+    int i=0,res=0;
+    if(roman.length()<=1)
+       {
+         return R[roman.at(0)];
+       }
+
+    while(i<roman.size())
+    {    
+        if(R[roman[i]]<R[roman[i+1]])
+        {
+            res+=R[roman[i+1]]-R[roman[i]] ;
+            i+=2 ;
+        }
+        else
+        {
+            res+=R[roman[i]] ;
+            i++;
+        }
+    }
+    return res ; 
+    
+}
+int main() {
+	int tc;
+	cin>>tc;
+	string roman;
+	while(tc!=0)
+	{
+	    cin>>roman;
+	    
+	    int res=roman_to_int(roman);
+         cout<<res<<endl ;
+         tc--;
+	}
+	return 0;
+}
+
+
+INPUT:
+2
+MMMDCCXCIV
+XCVIII
+
+OUTPUT:
+3794
+98
