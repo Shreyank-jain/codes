@@ -1,3 +1,6 @@
+-----------Using STL-------------
+
+
 #include <bits/stdc++.h>
 #include<string.h>
 using namespace std;
@@ -30,3 +33,29 @@ ABSG
 Output:
 ABC ACB BAC BCA CAB CBA 
 ABGS ABSG AGBS AGSB ASBG ASGB BAGS BASG BGAS BGSA BSAG BSGA GABS GASB GBAS GBSA GSAB GSBA SABG SAGB SBAG SBGA SGAB SGBA
+
+
+
+-----------------without using STL--------------
+void permute(string a, int l, int r)  
+{  
+    // Base case  
+    if (l == r)  
+        cout<<a<<endl;  
+    else
+    {  
+        // Permutations made  
+        for (int i = l; i <= r; i++)  
+        {  
+  
+            // Swapping done  
+            swap(a[l], a[i]);  
+  
+            // Recursion called  
+            permute(a, l+1, r);  
+  
+            //backtrack  
+            swap(a[l], a[i]);  
+        }  
+    }  
+}  
