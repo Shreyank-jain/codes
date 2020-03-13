@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int tc;
+	cin >> tc;
+	while(tc--) {
+	    int m, n;
+	    cin >> m >> n;
+	    int x = m^n;
+	    int i=1, res = -1;
+	    while(x>0) {
+	        if(x%2 == 1) {
+	            res = i;
+	            break;
+	        }
+	        i++;
+	        x/=2;
+	    }
+	    cout << res << endl;
+	}
+	return 0;
+}
+
+------------------------
+Input:
+2
+11 9
+52 4
+
+Output:
+2
+5
