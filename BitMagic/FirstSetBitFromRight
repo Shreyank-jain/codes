@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	  cin>>n;
+	 
+	int position = 1; 
+    int m = 1,flag=1; 
+  
+    while (!(n & m)) { 
+        flag=0;
+        m = m << 1; 
+        position++; 
+    } 
+    if(flag)
+         cout<<0<<endl;
+    else
+         cout<<position<<endl;  
+	}
+	
+	return 0;
+}
+
+------------------------
+Input:
+2
+18
+12
+
+Output:
+2
+3
