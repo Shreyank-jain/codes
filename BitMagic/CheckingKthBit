@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,k;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	cin>>n>>k;
+	int m=1;
+	m=m<<k;
+	m=n & m ;
+	m=m>>k ;
+	if(m%2==1)
+	    cout<<"Yes"<<endl ;
+	else 
+	    cout<<"No"<<endl ;
+	}
+	
+	return 0;
+}
+-----------------------------------
+Input:
+3
+4
+0
+4
+2
+500
+3
+
+Output:
+No
+Yes
+No
