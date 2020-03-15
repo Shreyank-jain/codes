@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,k;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	   cin>>n>>k ;
+	   int m=1;
+	   m=m<<k ;
+	   
+	   n=n|m ;
+	   cout<<n<<endl ;
+	}
+	
+	return 0;
+}
+------------------------------
+Input:
+2
+10 2
+15 3
+
+Output:
+14
+15
