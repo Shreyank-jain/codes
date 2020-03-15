@@ -1,0 +1,40 @@
+//Do XOR of 2 numbers
+and then calculate trhe number of 1 in the binary representation of xor of 2 numbers
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,m;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	  cin>>n>>m  ;
+	  int x=n^m ;
+	  int count=0 ;
+	  while(x>0)
+	  {
+	      if(x%2==1)
+	         count++ ;
+	      x/=2 ;
+	  }
+	  cout<<count<<endl ;
+	}
+	
+	return 0;
+}
+------------------------------
+Input:
+1
+10 20
+Output:
+4
+
+Explanation:
+Testcase1:
+A  = 01010
+B  = 10100
+Number of bits need to flipped = 4
