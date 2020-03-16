@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+int tc,np;
+cin>>tc;
+while(tc--){
+cin>>n;
+int count=0;
+while(n>0){
+    
+   if(n%2!=0)
+      n=n-1;
+  
+   else
+     n=n/2;
+
+   count++;
+}
+cout<<count<<endl ;
+}
+}
+
+-------------------------
+Input:
+2
+8
+7
+Input:
+4
+5
+
+Explanation:
+Testcase1:
+Input  : N = 8
+Output : 4
+0 + 1 = 1, 1 + 1 = 2, 2 * 2 = 4, 4 * 2 = 8
