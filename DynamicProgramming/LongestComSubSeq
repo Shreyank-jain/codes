@@ -1,0 +1,65 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+ 
+int lcs( char *X, char *Y, int m, int n )  
+{  
+    int L[m + 1][n + 1];  
+    int i, j;  
+      
+
+    for (i = 0; i <= m; i++)  
+    {  
+        for (j = 0; j <= n; j++)  
+        {  
+        if (i == 0 || j == 0)  
+            L[i][j] = 0;  
+      
+        else if (X[i - 1] == Y[j - 1])  
+            L[i][j] = L[i - 1][j - 1] + 1;  
+      
+        else
+            L[i][j] = max(L[i - 1][j], L[i][j - 1]);  
+        }  
+    }  
+          
+
+    return L[m][n];  
+}  
+
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,m;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	  cin>>n>>m ;
+	  char X[n] ,Y[m] ;
+	  
+	  for(int i=0;i<n;i++)
+	     cin>>X[i] ;
+	  for(int i=0;i<m;i++)
+	     cin>>Y[i] ;
+	     
+	  cout<<lcs(X,Y,n,m)<<endl ;
+	}
+	
+	return 0;
+}
+
+-----------------------------------------
+Input:
+2
+6 6
+ABCDGH
+AEDFHR
+3 2
+ABC
+AC
+
+Output:
+3
+2
