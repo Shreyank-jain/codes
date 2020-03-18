@@ -1,0 +1,29 @@
+bool logic(struct val p, struct val q){
+    return p.first < q.first;
+}
+int maxChainLen(struct val p[],int n)
+{
+     sort(p, p+n, logic);
+     vector<int>v(n,1);
+     for(int i=1; i<n; i++){
+         for(int j=0; j<i; j++){
+             if(p[i].first > p[j].second && v[i] < v[j]+1){
+                 v[i] = v[j]+1;
+             }
+         }
+     }
+     return *max_element(v.begin(),v.end());
+    
+}
+
+--------------------------------
+Input
+2
+5
+5  24 39 60 15 28 27 40 50 90
+2
+5 10 1 11 
+
+Output
+3
+1
