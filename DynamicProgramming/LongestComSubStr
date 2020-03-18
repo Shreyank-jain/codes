@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+int LCSubStr(char *X, char *Y, int m, int n) 
+{ 
+  
+    int LCSuff[m+1][n+1]; 
+    int result = 0;  
+  
+
+    for (int i=0; i<=m; i++) 
+    { 
+        for (int j=0; j<=n; j++) 
+        { 
+  
+            if (i == 0 || j == 0) 
+                LCSuff[i][j] = 0; 
+  
+            else if (X[i-1] == Y[j-1]) 
+            { 
+                LCSuff[i][j] = LCSuff[i-1][j-1] + 1; 
+                result = max(result, LCSuff[i][j]); 
+            } 
+            else LCSuff[i][j] = 0; 
+        } 
+    } 
+    return result; 
+} 
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,m;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	 cin>>n>>m ;
+	 char str1[n],str2[m] ;
+	 
+	 for(int i=0;i<n;i++)
+	      cin>>str1[i] ;
+	      
+	 for(int i=0;i<m;i++)
+	      cin>>str2[i] ;     
+	      
+	 cout<<LCSubStr(str1,str2,n,m)<<endl ; 
+	}
+	
+	return 0;
+}
+
+--------------------------------------
+Input:
+2
+6 6
+ABCDGH
+ACDGHR
+3 2
+ABC
+AC
+
+Output:
+4
+1
