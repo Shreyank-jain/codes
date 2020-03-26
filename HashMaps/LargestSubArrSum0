@@ -1,0 +1,27 @@
+int maxLen(int A[],int n)
+{
+    int res  = 0;
+    unordered_map<int, int> m;
+    int sum = 0;
+    for(int i = 0; i < n; i++)
+    {
+        sum = sum + A[i];
+        if(sum == 0)
+            res = i+1;
+        
+        if(m.find(sum) != m.end())
+        {
+            res = max((i-(m.find(sum)->second)), res);
+        }
+        m.insert(make_pair(sum,i));
+    }
+    return res;
+}
+----–-------------------------------------------------------------
+Input
+1
+8
+15 -2 2 -8 1 7 10 23
+
+Output
+5
