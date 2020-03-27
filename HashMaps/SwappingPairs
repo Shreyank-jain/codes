@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+#define nl printf("\n")
+
+bool isCanBeEqual(int a[], int b[], int m, int n){
+    int sum_a =0,sum_b=0;
+    
+    for(int i =0;i<m;i++)
+        sum_a +=a[i];
+        
+    for(int i =0;i<n;i++)
+        sum_b +=b[i];
+    
+    for(int i =0;i<m;i++){
+        for(int j=0;j<n;j++){
+            int tsum_a = sum_a-a[i] + b[j];
+            int tsum_b = sum_b-b[j] + a[i];
+            if( tsum_a ==tsum_b)
+                return true;
+        }
+    }
+    
+    return false;
+}
+
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--){
+	  int m,n;
+	  cin>>m>>n;
+	  int a[m], b[n];
+	  for(int i =0;i<m;i++) cin>>a[i];
+	  for(int i =0;i<n;i++) cin>>b[i];
+	  printf("%d\n", isCanBeEqual(a,b,m,n)? 1: -1);
+	}
+	
+	return 0;
+}
+
+
+---------------------------------------------------------
+Input:
+2
+6 4
+4 1 2 1 1 2
+3 6 3 3
+4 4
+5 7 4 6
+1 2 3 8
+
+Output:
+1
+1
+
+Explanation:
+Testcase 1: 1 and 3 are two such values one from first array other from second one,
+if we swap these two values then we will get both arrays sum as equal.
