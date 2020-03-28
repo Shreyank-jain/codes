@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int tc;
+	cin>>tc;
+	while(tc--)
+	{
+	    int n,m,data;
+	    cin>>n>>m;
+	     int a[n],b[m];
+	    int f=1;
+	    unordered_map< int, int> mp;
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>a[i];
+	        mp[a[i]]++;
+	    }
+	    for(int i=0;i<m;i++)
+	    {
+	        cin>>data;
+	        if(mp.find(data)==mp.end() && f)
+	        {
+	            cout<<"No"<<endl ;
+	            f=0;
+	            
+	        }
+	    }
+	    if(f==1)
+	    {
+	        cout<<"Yes"<<endl;
+	    }
+	}
+	return 0 ;
+}
+
+-----------------------------------------------------------------------
+Input:
+3
+6 4
+11 1 13 21 3 7
+11 3 7 1
+6 3
+1 2 3 4 5 6
+1 2 4
+5 3
+10 5 2 23 19
+19 5 3
+
+Output:
+Yes
+Yes
+No
