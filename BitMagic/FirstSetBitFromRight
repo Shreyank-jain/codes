@@ -28,8 +28,24 @@ int main()
 	
 	return 0;
 }
-
-------------------------
+---------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n;
+	cin>>tc ;
+	while(tc--)
+	{
+	  cin>>n;
+	  cout<<ffs(n)<<endl;  //find first set, STL function to find first set bit
+	}
+	
+	return 0;
+}
+----------------------------------------------------------
 Input:
 2
 18
