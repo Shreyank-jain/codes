@@ -1,0 +1,51 @@
+Node *merge (Node *h1,Node *h2)
+{
+    if(h1==NULL) return(h2);
+    if(h2==NULL) return(h1);
+    if(h1->data<h2->data) {
+        h1->bottom=merge(h1->bottom,h2);
+        return(h1);
+    }
+    else{
+        h2->bottom=merge(h1,h2->bottom);
+        return(h2);
+        
+    }
+}
+Node *flatten(Node *root)
+{
+    Node *a =root;
+    Node  *b=root->next;
+    while(b!=NULL)
+    {
+        Node *c=b->next;
+        a=merge(a,b);
+        b=c;
+        
+    }
+    return(a);
+}
+
+
+--------------------------------------------------------------------
+       5 -> 10 -> 19 -> 28
+       |    |     |     |
+       V    V     V     V
+       7    20    22    35
+       |          |     |
+       V          V     V
+       8          50    40
+       |                |
+       V                V
+       30               45
+       
+       
+Input:
+1                   
+4 
+4 2 3 4                  
+5 7 8 30 10 20 19 22 50 28 35 40 45
+
+Output:
+5 7 8 10 19 20 22 28 30 35 40 45 50      
+       
