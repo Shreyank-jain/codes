@@ -1,0 +1,28 @@
+int detectloop(Node *list) {
+
+   struct  Node *slow_p = list;
+   struct Node *fast_p = list; 
+  
+    while (fast_p && fast_p->next) { 
+        slow_p = slow_p->next; 
+        fast_p = fast_p->next->next; 
+        if (slow_p == fast_p) { 
+            return 1; 
+        } 
+    } 
+    return 0; 
+}
+
+
+---------------------------------------------------------------------------------
+Input:
+2
+3
+1 3 4
+2
+4
+1 8 3 4
+0
+Output:
+True
+False
