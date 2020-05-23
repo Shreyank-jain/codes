@@ -1,0 +1,43 @@
+#include<map>
+#include<queue>
+#include<list>
+
+void verticalOrder(Node *node)
+{
+    if(node==NULL)
+        return;
+        
+   map<int,vector<int> > m;
+   queue<pair<Node*,int>> q;
+   int hd=0;
+   q.push(make_pair(node,hd));
+   
+   while(!q.empty()){
+       Node* temp=q.front().first;
+       hd=q.front().second;
+       m[hd].push_back(temp->data);
+       if(temp->left!=NULL){
+           q.push(make_pair(temp->left,hd-1));
+       }
+       if(temp->right!=NULL){
+           q.push(make_pair(temp->right,hd+1));
+       }
+       q.pop();
+   }
+   
+    for(auto it=m.begin();it!=m.end();++it)
+ {
+     for(int i=0;i<it->second.size();i++)
+           cout<<m[it->first][i]<<" ";
+   }
+}
+------------------------------------------------------------------------------------------------------
+Input:
+3
+2 N 3 4 N
+1 2 3 4 5 N 6
+3 1 5 N 2 4 7 N N N N 6 
+Output:
+2 4 3
+4 2 1 5 3 6
+1 3 2 4 5 6 7
