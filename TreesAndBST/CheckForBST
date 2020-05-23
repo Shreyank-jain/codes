@@ -1,3 +1,6 @@
+----------Recursive approach-------------------
+
+
 int isBSTUtil(Node* root, int min, int max){
         if(root == NULL)
               return 1;
@@ -13,6 +16,32 @@ bool isBST(Node* root) {
     if(isBSTUtil(root, INT_MIN, INT_MAX))
          return true;
 return false;
+}
+
+
+----------Inorder Solution-------------
+
+void inorder(Node* roott)
+{
+    if(roott==nullptr)
+          return ;
+    
+    inorder(roott->left);
+    vec.push_back(roott->data);
+    inorder(roott->right);
+              
+}
+bool isBST(Node* root)
+{
+    vec.clear();
+    
+    inorder(root);
+    for(int i=0;i<vec.size()-1;i++)
+        if(vec[i]>vec[i+1])
+               return 0 ;
+    
+    return 1 ;           
+    
 }
 
 ------------------------------------------------------------------------------
