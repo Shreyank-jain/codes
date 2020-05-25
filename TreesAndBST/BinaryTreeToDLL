@@ -13,6 +13,7 @@ void bToDLL(Node *root, Node **head)
            prev->right=root;
          }    
      prev=root;
+     
      bToDLL(root->right,head);
 
 }
