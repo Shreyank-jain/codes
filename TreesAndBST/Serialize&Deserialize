@@ -1,0 +1,52 @@
+void serialize(Node *root,vector<int> &A)
+{    
+    // using pre-order traversal
+    if(root==NULL){
+        A.push_back(-1);
+        return;
+    }
+    
+    A.push_back(root->data);
+    serialize(root->left,A);
+    serialize(root->right,A);
+}
+
+int pre_index = 0;
+Node * deSerialize(vector<int> &Arr)
+{
+    if (pre_index == Arr.size() || Arr[pre_index] == -1) {
+        pre_index += 1;
+        pre_index %= Arr.size();
+        return NULL; 
+    } 
+    Node *root = new Node(Arr[pre_index]); 
+    pre_index += 1;
+    //pre_index %= Arr.size();
+    root->left = deSerialize(Arr); 
+    root->right = deSerialize(Arr); 
+    return root;
+}
+
+
+-------------------------------------------------------------------------------------------------
+Input:
+2
+1 2 3
+10 20 30 40 60
+Output:
+2 1 3
+40 20 60 10 30
+
+Explanation:
+Testcase 1: Given tree is 
+                           1
+                       /      \
+                     2           3
+Hence , the given output is 2 1 3.
+Testcase 2: Given tree is 
+                         10
+                       /    \
+                     20      30
+                   /            \
+                40               60
+Hence, the given output is 40 20 60 10 30.
