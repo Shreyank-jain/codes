@@ -1,0 +1,39 @@
+int height(Node* node)
+{
+    if(node==NULL)  return 0;
+    if(node->left==NULL && node->right==NULL)  return 1 ;
+    
+    return max(height(node->left),height(node->right))+1 ;
+}
+bool isBalanced(Node *root)
+{
+   if(root==NULL) return 1 ;
+   int lheight=height(root->left);
+   int rheight=height(root->right);
+   
+   if(abs(lheight-rheight)<=1
+      && isBalanced(root->left)
+      && isBalanced(root->right))
+         return 1 ;
+   
+   return 0 ;
+}
+
+
+---------------------------------------------------------------------------
+Input:
+3
+1 2 N N 3
+10 20 30 40 60 N N
+4 6 6
+Output:
+0
+1
+1
+Explanation:
+Testcase1: The tree is
+        1
+     /    
+   2
+      \
+       3 
