@@ -1,0 +1,87 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define intt long long int 
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	intt tc,n,s;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	    cin>>n>>s ;
+	    if(s<n || s>9*n)
+	    {
+	       cout<<-1<<endl ;
+	       continue ;
+	    }
+	    intt temp2=s,i=0;
+	    intt sum=0;
+	    while(n--)
+	    {
+	        if(s>9)
+	        {
+	            sum=sum*10+9 ;
+	            s-=9;
+	        }
+	        else if(s==0  )
+	        {
+	            sum=sum*10 ;
+	        }
+	        else
+	         {
+	             sum=sum*10+s ;
+	             s=0;
+	         }
+	    }
+	    cout<<sum<<endl ;
+	}
+	
+	return 0;
+}
+
+
+
+--------------When sum is too large------------------------
+
+
+#include<iostream>
+using namespace std;
+int main()
+ {
+	int t, n, k, i;
+	cin >> t;
+	while(t>0){
+	    cin >> n;
+	    cin >> k;
+	    if(k>n*9 || (k==0 && n>1)){
+	        cout << -1;
+	    }else{
+	        while(n>=1){
+	        if(k>=9){
+	            cout << 9;
+	            k=k-9;
+	        }else if(k==0){
+	            cout << 0;
+	        }else{
+	            cout << k;
+	            k=0;
+	        }
+	        n--;
+	    }
+	    }
+	    cout << endl;
+	    t--;
+	}
+	return 0;
+}
+
+-------------------------------------------------------------------
+Input:
+2
+2 9
+3 20
+Output: 
+90
+992 
