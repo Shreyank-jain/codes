@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int pagefaults(int pages[],int n,int k)
+{
+    unordered_set<int> s ;
+    unordered_map<int,int> indexes ;
+    
+    int pfaults=0;
+    for(int i=0;i<n;i++)
+    {
+        if(s.size()<k)
+        {
+            if(s.find(pages[i])==s.end())
+            {
+                s.insert(pages[i]);
+                pfaults++ ;
+            }
+            indexes[pages[i]]=i ;
+        }
+        else
+        {
+            if(s.find(pages[i])==s.end())
+            {
+                 int lru=INT_MAX,val ;
+                
+                 for(auto it=s.begin();it!=s.end();it++)
+                 {
+                     if(indexes[*it]<lru)
+                     {
+                         lru=indexes[*it];
+                         val=*it ;
+                     }
+                 }
+                 s.erase(val);
+                 s.insert(pages[i]);
+                 pfaults++ ;
+            }
+            indexes[pages[i]]=i ;
+        }
+    }
+    return pfaults ;
+}
+
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,n,k;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	   cin>>n;
+	   int pages[n];
+	   for(int i=0;i<n;i++) cin>>pages[i] ;
+	   cin>>k;
+	   cout<<pagefaults(pages,n,k)<<endl;
+	}
+	
+	return 0;
+}
+
+---------------------------------------------------------------------------------------
+Input:
+2
+9
+5 0 1 3 2 4 1 0 5
+4
+8
+3 1 0 2 5 4 1 2
+4
+
+Output:
+8
+7
