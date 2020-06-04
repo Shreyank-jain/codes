@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+struct Activity{
+    int start, finish, index;
+};
+ 
+bool activityCompare(Activity s1, Activity s2)
+{
+    return s1.finish < s2.finish;
+}
+ 
+int main() {
+	int t,n,i,j;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n;
+	    Activity arr[n];
+	    for(i=0;i<n;i++)
+	    {
+	        cin>>arr[i].start;
+	        arr[i].index = i;
+	    }
+ 
+	    for(i=0;i<n;i++)
+	    cin>>arr[i].finish;
+	    sort(arr,arr+n,activityCompare);
+ 
+	    i = 0;
+        cout << arr[i].index+1 << " ";
+        for (int j = 1; j < n; j++)
+        {
+          if (arr[j].start >= arr[i].finish)
+          {
+              cout << arr[j].index+1<<" ";
+              i = j;
+          }
+        }
+        cout<<endl;
+	}
+	return 0;
+}
+
+------------------------------------------------------------------------------
+Input:
+2
+6
+1 3 0 5 8 5
+2 4 6 7 9 9
+8
+75250 50074 43659 8931 11273 27545 50879 77924
+112960 114515 81825 93424 54316 35533 73383 160252  
+
+Output:
+1 2 4 5
+6 7 1
