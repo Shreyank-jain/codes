@@ -1,0 +1,79 @@
+/* Function to do DFS of graph
+
+g : adjacency list of graph
+N : number of vertices
+
+return a list containing the DFS traversal of the given graph
+*/
+
+
+
+
+--------------------Recursive Approach--------------------------
+
+vector<int> v ;
+
+void helper(int s, vector<int> g[], bool vis[]){
+    vis[s]=true;
+    cout<<s<<" ";
+    vector<int>::iterator i;
+    for(i=g[s].begin();i!=g[s].end();++i){
+        if(!vis[*i])
+        helper(*i,g,vis);
+    }
+}
+vector <int> dfs(vector<int> g[], int N)
+{
+   bool vis[N];
+   memset(vis,false,N);
+   for(int i=0;i<N;i++)  vis[i]==false ;    
+   for(int i=0;i<N;i++)
+         if(!vis[i])
+               helper(i,g,vis);
+   return v ;
+   
+   
+-------------------Iterative Approach------------------------
+void dfs(int s, vector<int> g[], bool vis[]){
+    stack<int> st;
+    st.push(s);
+    cout<<s<<" ";
+    vis[s]=1;
+    while(!st.empty()){
+        int top=st.top();
+        int flag=0;
+        for(int i=0;i<g[top].size();i++){
+            if(vis[g[top][i]]!=1){
+                st.push(g[top][i]);
+                cout<<g[top][i]<<" ";
+                vis[g[top][i]]=1;
+                flag=1;
+                break;
+            }
+        }
+        if(!flag) st.pop();
+    }
+}
+
+
+
+--------------------------------------------------------------
+Input:
+2
+5 4
+0 1 0 2 0 3 2 4
+4 3
+0 1 1 2 0 3
+
+Output:
+0 1 2 4 3   
+0 1 2 3
+
+Explanation:
+Testcase 1:
+0 is connected to 1 , 2 , 3
+1 is connected to 0
+2 is connected to 0 and 4
+3 is connected to 0
+4 is connected to 2
+so starting from 0 , dfs will be 0 1 2 4 3.   
