@@ -1,0 +1,67 @@
+int spanningTree(int V, int E, vector<vector<int>>& graph) {
+	// code here
+
+	int start_vertex = 0;
+	int* distances = new int[V];
+	bool* vis = new bool[V];
+	int mindist = 0;
+	int next_vertex;
+
+	for (int i = 0; i < V; i++)
+	{
+		vis[i] = false;
+		distances[i] = INT_MAX;
+	}
+
+	
+	distances[start_vertex] = 0;
+
+	int temp = V-1;
+	while (temp--)
+	{
+		vis[start_vertex] = true;
+		// Update key values for everyone adjacent
+		
+		for (auto it = 0; it < V; it++)
+		{
+			if (it != start_vertex && graph[start_vertex][it] != INT_MAX &&
+				!vis[it] && graph[start_vertex][it] != 0 &&
+				distances[it] > graph[start_vertex][it])
+			{
+				distances[it] = graph[start_vertex][it];
+			}
+		}
+
+		// Find smallest key edge index
+		int min_temp = INT_MAX;
+		for (int i = 0; i < V; i++)
+		{
+			if (!vis[i] && distances[i] < min_temp)
+			{
+				min_temp = distances[i];
+				next_vertex = i;
+			}
+		}
+
+		mindist += distances[next_vertex];
+		start_vertex = next_vertex;
+	}
+
+	return mindist;
+}
+
+
+--------------------------------------------------------------------------------
+Input:
+2
+3 3
+1 2 5 2 3 3 1 3 1
+2 1
+1 2 5
+
+Output:
+4
+5
+
+Example:
+Testcase 1:  Sum of weights of edges in the minimum spanning tree is 4.
