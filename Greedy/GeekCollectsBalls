@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+int main()
+ {
+	int a;
+	cin >> a;
+	while(a--){
+	    int m,n;
+	    cin>>m>>n;
+	    int arr[m],darr[n];
+	    for(int i = 0 ; i < m ; i++)  cin>>arr[i];
+	    for(int i = 0 ; i < n ; i++)  cin>>darr[i];
+	    
+	    int sum1 = 0,sum2 = 0;
+	    int i = 0,j = 0,ans = 0;
+	    
+	    while(i < m && j < n){
+	        if(arr[i] < darr[j])
+	        sum1 += arr[i++];
+	        
+	        else if(arr[i] > darr[j])
+	        sum2 += darr[j++];     
+	        
+	        else{
+	            int a = arr[i];
+	            while(arr[i] == a && i < m)
+	            sum1 += arr[i++];
+	            
+	            while(darr[j] == a && j < n)
+	            sum2 += darr[j++];
+	            
+	            ans += max(sum1,sum2);
+	            sum1 = 0 ; sum2 = 0; 
+	        }
+	    }
+	    while(i < m)
+	        sum1 += arr[i++];
+	    
+	    while(j < n)
+	        sum2 += darr[j++];
+
+	    ans = ans + max(sum1,sum2);
+	    cout<<ans<<endl;
+	}
+}
+
+------------------------------------------------------------------------------------
+Input:
+1
+5 5
+1 4 5 6 8
+2 3 4 6 9
+
+Output:
+29
