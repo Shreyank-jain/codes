@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n; cin>>n;
+    int *a = new int[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int count = 0;
+    unordered_map<int,bool> visited;
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+          int one = i,two = a[i]-1;
+          int len = 1;
+          visited[i] = 1;
+          while(two != i){
+           visited[two] = 1;
+           one = two;
+           two = a[two] - 1;
+           len++;
+          }
+          count += len-1;
+        }
+    }
+    cout<<count<<endl;
+    return 0;
+}
+
+
+----------------------------------------------------------------------------------
+Input:
+2
+4
+4 3 2 1
+5
+1 5 4 3 2
+
+Output:
+2
+2
+
+Explanation:
+Test Case 1: We need two swaps, swap 1 with 4 and 3 with 2 to make it sorted.
+Test Case 2: We need two swaps, swap 2 with 5 and 3 with 4 to make it sorted. 
