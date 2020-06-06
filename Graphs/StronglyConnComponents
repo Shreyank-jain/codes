@@ -1,0 +1,70 @@
+void DFS(int i,vector<int> adj[],stack<int> &s,bool*visited)
+{
+    visited[i] = true;
+    for(int j=0;j<adj[i].size();j++)
+    {
+        if(!visited[adj[i][j]]) DFS(adj[i][j],adj,s,visited);
+    }
+    s.push(i);
+}
+void DFS2(int i,vector<int> t[],bool*visited)
+{
+    visited[i] = true;
+    for(int j=0;j<t[i].size();j++)
+    {
+        if(!visited[t[i][j]]) DFS2(t[i][j],t,visited);
+    }
+}
+void Transpose(int V,vector<int> adj[],vector<int>Transpose[])
+{
+    for(int i=0;i<V;i++)
+    {
+        for(int j=0;j<adj[i].size();j++)
+        {
+            int u = adj[i][j];
+            Transpose[u].push_back(i);
+        }
+    }
+}
+int kosaraju(int V, vector<int> adj[])
+{
+    stack<int> s;
+    bool visited[V];
+    memset(visited,false,sizeof(visited));
+    for(int i=0;i<V;i++)
+    {
+        if(!visited[i])
+        {
+            DFS(i,adj,s,visited);
+        }
+    }
+    vector<int> t[V];
+    Transpose(V,adj,t);
+    memset(visited,false,sizeof(visited));
+    
+    int component = 0;
+    while(!s.empty())
+    {
+        int top = s.top();
+        s.pop();
+        if(!visited[top]) 
+        {
+            DFS2(top,t,visited);
+            component++;
+        }
+    }
+    return component;
+}
+
+
+----------------------------------------------------------------------------------
+Input:
+2
+5 5
+1 0 0 2 2 1 0 3 3 4
+3 3
+0 1 1 2 2 0
+
+Output:
+3
+1
