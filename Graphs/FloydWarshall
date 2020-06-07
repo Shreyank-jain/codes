@@ -1,0 +1,78 @@
+-----------Algorithm to find shortest path between every pair of vertices-------------------------------------------
+
+#include<bits/stdc++.h>
+using namespace std;
+#define INF 10000000
+int main()
+ {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL);
+	int tc,V;
+	cin>>tc ;
+	
+	while(tc--)
+	{
+	     cin>>V;
+	     int graph[V][V];
+	     for(int i=0;i<V;i++)
+	         for(int j=0;j<V;j++)
+	             cin>>graph[i][j];
+	             
+	     int dist[V][V], i, j, k;  
+  
+    for (i = 0; i < V; i++)  
+        for (j = 0; j < V; j++)  
+            dist[i][j] = graph[i][j];  
+  
+
+    for (k = 0; k < V; k++)  
+    {  
+        // Pick all vertices as source one by one  
+        for (i = 0; i < V; i++)  
+        {  
+            // Pick all vertices as destination for the  
+            // above picked source  
+            for (j = 0; j < V; j++)  
+            {  
+                // If vertex k is on the shortest path from  
+                // i to j, then update the value of dist[i][j]  
+                if (dist[i][k] + dist[k][j] < dist[i][j])  
+                    dist[i][j] = dist[i][k] + dist[k][j];  
+            }  
+        }  
+    }  
+  
+    for (int i = 0; i < V; i++)  
+    {  
+        for (int j = 0; j < V; j++)  
+        {  
+            if (dist[i][j] == INF)  
+                cout<<"INF"<<" ";  
+            else
+                cout<<dist[i][j]<<" ";  
+        }
+        cout<<endl ;
+    }
+}  
+
+	
+	return 0;
+}
+
+-------------------------------------------------------------------------------------
+Input
+2
+2
+0 25
+INF 0
+3
+0 1 43
+1 0 6
+INF INF 0
+
+Output
+0 25
+INF 0 
+0 1 7
+1 0 6
+INF INF 0 
