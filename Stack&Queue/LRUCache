@@ -1,0 +1,66 @@
+from collections import OrderedDict
+class LRUCache:
+      
+    #Constructor for initializing the cache capacity with the given value.  
+    def __init__(self,cap):
+        self.cap = cap
+        self.dic = OrderedDict()
+        
+        
+        
+    #Function to return value corresponding to the key.
+    def get(self, key):
+        
+        if key in self.dic:
+            value = self.dic[key]
+            del self.dic[key]
+            self.dic[key] = value
+            return value
+        else:
+            return -1
+            
+        
+        
+    #Function for storing key-value pair.   
+    def set(self, key, value):
+        if key in self.dic:
+            del self.dic[key]
+            self.dic[key] = value
+        else:
+            if self.cap == len(self.dic):
+                key2 = next(iter(self.dic.keys()))
+                del self.dic[key2]
+                self.dic[key] = value
+            else:
+                self.dic[key] = value
+
+
+Input:
+cap = 2
+Q = 8
+Queries = SET 1 2 SET 2 3 SET 1 5
+SET 4 5 SET 6 7 GET 4 SET 1 2 GET 3
+Output: 5 -1
+Explanation: 
+Cache Size = 2
+SET 1 2 : 1 -> 2
+
+SET 2 3 : 1 -> 2, 2 -> 3 (the most recently 
+used one is kept at the rightmost position) 
+
+SET 1 5 : 2 -> 3, 1 -> 5
+
+SET 4 5 : 1 -> 5, 4 -> 5 (Cache size is 2, hence 
+we delete the least recently used key-value pair)
+
+SET 6 7 : 4 -> 5, 6 -> 7 
+
+GET 4 : Prints 5 (The cache now looks like
+6 -> 7, 4->5)
+
+SET 1 2 : 4 -> 5, 1 -> 2 
+(Cache size is 2, hence we delete the least 
+recently used key-value pair)
+
+GET 3 : No key value pair having 
+key = 3. Hence, -1 is printed.
